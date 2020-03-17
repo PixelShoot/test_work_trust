@@ -1,0 +1,31 @@
+<div class="player-timeline">
+  <ng-container *ngFor="let matchEvent of matchEvents">
+    <app-player-event
+      class="player-timeline__event"
+      [style.left]="
+        ((matchEvent.time - 15) / (playerService.videoDuration$ | async)) *
+          100 +
+        '%'
+      "
+      [matchEvent]="matchEvent"
+      (onMatchEventSelect)="_onMatchEventSelect($event)"
+    ></app-player-event>
+  </ng-container>
+
+  <mat-progress-bar
+    mode="determinate"
+    [value]="playerService.stickPosition$ | async"
+  ></mat-progress-bar>
+  <div
+    class="player-timeline__stick"
+    [style.left]="playerService.stickPosition$ | async"
+  ></div>
+</div>
+<div class="player-timeline__time">
+  <span class="player-timeline__time__indicator">
+    {{ playerService.currentVideoTime$ | async | minuteSeconds }}
+  </span>
+  <span class="player-timeline__time__indicator">
+    {{ playerService.videoDuration$ | async | minuteSeconds }}
+  </span>
+</div>

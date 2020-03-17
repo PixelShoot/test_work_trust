@@ -1,0 +1,23 @@
+.player-timeline {
+  width: 100%;
+  position: relative;
+  &__stick {
+    position: absolute;
+    height: 40px;
+    width: 2px;
+    z-index: 2;
+    background-color: blue;
+    top: -20px;
+  }
+  &__time {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__event {
+    z-index: 1;
+    top: -10px;
+    position: absolute;
+  }
+}

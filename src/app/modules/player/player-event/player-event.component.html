@@ -1,0 +1,34 @@
+<button
+  mat-mini-fab
+  (click)="onMatchEventClick(matchEvent.time)"
+  class="event-button"
+  [ngClass]="matchEvent.type + '-event'"
+  [mdePopoverTriggerFor]="eventPopover"
+></button>
+
+<mde-popover
+  #eventPopover="mdePopover"
+  mdePopoverPositionY="above"
+  [mdePopoverOverlapTrigger]="false"
+  mdePopoverPositionX="before"
+  mdePopoverOffsetX="9"
+>
+  <span *ngIf="!matchEvent.group">{{ matchEvent.time | minuteSeconds }}</span>
+  <ng-container *ngIf="matchEvent.group">
+    <button
+      mat-button
+      [ngClass]="matchEvent.type + '-event'"
+      (click)="onMatchEventClick(matchEvent.time)"
+    >
+      {{ matchEvent.time | minuteSeconds }}
+    </button>
+    <button
+      mat-button
+      *ngFor="let additionalEvent of matchEvent.group"
+      [ngClass]="additionalEvent.type + '-event'"
+      (click)="onMatchEventClick(additionalEvent.time)"
+    >
+      {{ additionalEvent.time | minuteSeconds }}
+    </button>
+  </ng-container>
+</mde-popover>

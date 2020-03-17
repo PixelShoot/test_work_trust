@@ -1,0 +1,11 @@
+<div class="player">
+    <app-player-video
+        class="player__video"
+        [playerTime]="setPlayerTime"
+    ></app-player-video>
+    <app-player-timeline
+        class="player__timeline"
+        [matchEvents]="matchEvents"
+        (onMatchEventSelect)="onMatchEventSelect($event)"
+    ></app-player-timeline>
+</div>
